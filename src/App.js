@@ -15,13 +15,11 @@ function App() {
 
 
 
-    console.log(clickForward)
+    // console.log(clickForward)
     function handleClickForward (url){
         if (toggleClickForward) {
 
         }
-
-
 
     }
 
@@ -32,12 +30,12 @@ function App() {
             try {
                 const result = await axios.get(`https://pokeapi.co/api/v2/pokemon/`);
                 console.log(result.data.results);
-                console.log(result.data)
+                // console.log(result.data)
                 setPokemons(result.data.results);
                 toggleClickForward(!clickForward);
-                console.log(result.data.next)
+                // console.log(result.data.next)
                 let url = result.data
-                console.log(url)
+                // console.log(url)
 
             } catch (e) {
                 setError("Er is iets misgegaan met het ophalen van de data.")
@@ -46,7 +44,7 @@ function App() {
         }
 
         fetchData();
-    }, [clickForward]);
+    }, []);
 
     return (
         <>

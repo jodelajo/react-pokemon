@@ -14,7 +14,7 @@ function Pokemon({ name}){
             setPokemon(result.data)
             setPokemonAbilities(result.data.abilities)
             setMooves(result.data.moves)
-            console.log(result.data.abilities)
+            // console.log(result.data.abilities)
         } catch (e) {
             console.error(e)
         }
