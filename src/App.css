@@ -16,27 +16,38 @@
 }
 
 .pokemon-card {
-    width: 250px;
+    width: 272px;
+    height: 566px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    margin: 60px 20px;
-    padding: 16px 6px;
+    justify-content: space-between;
+    align-items: stretch;
+    margin: 60px 16px 8px 16px;
+    padding: 10px 30px 24px 30px;
     background-color: antiquewhite;
-    box-shadow: 3px 3px 3px darkgoldenrod;
+    box-shadow: 5px 5px 10px darkgoldenrod;
     text-transform: capitalize;
+    border-radius: 4px;
 }
 
-.single-element{
-    margin: 6px 0;
+h2 {
+    margin-top: 12px;
+    align-self: center;
+    font-weight: bold;
+    font-size: 32px;
 }
+
+.single-element {
+    margin: 12px 0 3px 0;
+}
+
 .pokemon-card ul {
     display: flex;
     flex-direction: column;
     align-items: stretch;
     justify-content: center;
     width: 100%;
+    padding: 6px 0 2px 0;
 
 }
 
@@ -45,15 +56,19 @@
     background-color: lightgray;
     border-radius: 8px;
     justify-self: stretch;
-    padding:3px 16px;
-    margin: 6px 12px;
+    padding: 3px 16px;
+    margin: 0 0 6px 0;
 }
+
 .pokemon-card li:hover {
     background-color: lightblue;
 }
 
 .pokemon-image {
     width: 180px;
+    justify-self: center;
+    align-self: center;
+    margin: 12px;
 }
 
 .header {
@@ -68,24 +83,33 @@
     margin: 60px 0 40px 0;
     cursor: pointer;
 }
+
 .button {
     display: flex;
-    padding: 0 40%;
+    padding: 0 35%;
     justify-content: space-between;
     background-color: gold;
 }
 
 .single-button {
-    padding:6px 22px;
+    padding: 6px 22px;
     background-color: blue;
     color: gold;
     border: 1px solid blue;
-    width: 100px;
+    width: 160px;
     text-align: center;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+}
 
+.single-button:hover {
+    background-color: darkcyan;
 }
 
 .single-button:disabled {
     background-color: lightskyblue;
     color: #252020;
+    cursor: auto;
+    font-weight: lighter;
 }
