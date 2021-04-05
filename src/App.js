@@ -7,18 +7,20 @@ import axios from "axios";
 function App() {
     const [pokemons, setPokemons] = useState([]);
     const [error, setError] = useState('')
-    const [currentUrl, setCurrentUrl] = useState('https://pokeapi.co/api/v2/pokemon/?offset=0&limit=20')
-    const [nextUrl, setNextUrl] = useState('')
-    const [previousUrl, setPreviousUrl] = useState('')
+    const [currentUrl, setCurrentUrl] = useState('https://pokeapi.co/api/v2/pokemon/')
+    const [nextUrl, setNextUrl] = useState(null)
+    const [previousUrl, setPreviousUrl] = useState(null)
 
 
     function handleClickNext() {
         setCurrentUrl(nextUrl)
-        console.log(currentUrl)
+        console.log(nextUrl)
     }
-    function handleClickPrevious(){
+
+    function handleClickPrevious() {
         setCurrentUrl(previousUrl)
     }
+
 
     useEffect(() => {
         async function fetchData() {
@@ -26,6 +28,7 @@ function App() {
             try {
                 const result = await axios.get(currentUrl);
                 setPokemons(result.data.results);
+                console.log(result.data)
                 console.log(currentUrl)
                 setNextUrl(result.data.next)
                 setPreviousUrl(result.data.previous)
@@ -34,21 +37,33 @@ function App() {
                 console.error(e)
             }
         }
+
         fetchData();
     }, [currentUrl]);
     return (
         <>
             <div className="header">
-                <img src={logo} alt="logo" className="logo"/>
+                <img src={logo} alt="logo" className="logo" />
             </div>
             <div className="button">
-                <button type="button" className="single-button" onClick={handleClickPrevious}>Previous</button>
-                <button type="button" className="single-button" onClick={handleClickNext}>Next</button>
+                <button type="button"
+                        className="single-button"
+                        onClick={handleClickPrevious}
+                        disabled={previousUrl === null}
+                >Previous
+                </button>
+                <button
+                    type="button"
+                    className="single-button"
+                    onClick={handleClickNext}
+                    disabled={nextUrl === null}
+                >Next
+                </button>
             </div>
             <div className="pokemon-container">
                 {error && <p>{error}</p>}
                 {pokemons && pokemons.map((pokemon) => {
-                    return <Pokemon name={pokemon.name}/>
+                    return <Pokemon name={pokemon.name} currentUrl={currentUrl}/>
                 })}
             </div>
         </>

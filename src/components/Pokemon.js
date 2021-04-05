@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import axios from "axios";
 
-function Pokemon({ name}){
+function Pokemon({ name, currentUrl, homeUrl}){
     const [pokemon, setPokemon] = useState([]);
     const [pokemonAbilities, setPokemonAbilities] = useState([])
     const [mooves, setMooves] = useState([])
@@ -22,7 +22,7 @@ function Pokemon({ name}){
     }
 
 fetchSinglePokemon();
-    },([]))
+    },[currentUrl],[homeUrl])
 
     return (
         <div className="pokemon-card">
