@@ -7,9 +7,10 @@ import axios from "axios";
 function App() {
     const [pokemons, setPokemons] = useState([]);
     const [error, setError] = useState('')
-    const [currentUrl, setCurrentUrl] = useState('https://pokeapi.co/api/v2/pokemon/')
+    const [currentUrl, setCurrentUrl] = useState('https://pokeapi.co/api/v2/pokemon/?offset=0&limit=20')
     const [nextUrl, setNextUrl] = useState(null)
     const [previousUrl, setPreviousUrl] = useState(null)
+    const basicUrl = `https://pokeapi.co/api/v2/pokemon/?offset=0&limit=20`
 
 
     function handleClickNext() {
@@ -21,6 +22,10 @@ function App() {
         setCurrentUrl(previousUrl)
     }
 
+    function imgClick(){
+        setCurrentUrl(basicUrl)
+    }
+
 
     useEffect(() => {
         async function fetchData() {
@@ -28,8 +33,7 @@ function App() {
             try {
                 const result = await axios.get(currentUrl);
                 setPokemons(result.data.results);
-                console.log(result.data)
-                console.log(currentUrl)
+                setCurrentUrl(currentUrl)
                 setNextUrl(result.data.next)
                 setPreviousUrl(result.data.previous)
             } catch (e) {
@@ -37,13 +41,12 @@ function App() {
                 console.error(e)
             }
         }
-
         fetchData();
     }, [currentUrl]);
     return (
         <>
             <div className="header">
-                <img src={logo} alt="logo" className="logo" />
+                <img src={logo} alt="logo" className="logo" onClick={imgClick} />
             </div>
             <div className="button">
                 <button type="button"
@@ -63,7 +66,7 @@ function App() {
             <div className="pokemon-container">
                 {error && <p>{error}</p>}
                 {pokemons && pokemons.map((pokemon) => {
-                    return <Pokemon name={pokemon.name} currentUrl={currentUrl}/>
+                    return <Pokemon name={pokemon.name} currentUrl={nextUrl}/>
                 })}
             </div>
         </>
