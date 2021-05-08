@@ -26,7 +26,7 @@ function Pokemon({name, currentUrl}) {
             <img src={pokemon.sprites?.front_default} className="pokemon-image"/>
             <p className="single-element">Gewicht: {pokemon.weight}</p>
             <p className="single-element">Aantal Moves: {mooves.length}</p>
-            <h3 className="single-element"> Lijst Abilities:</h3>
+            <h3 className="single-element">List Abilities:</h3>
             <ul>
                 {pokemonAbilities.map((pokemonAbility) => {
                     return <li key={pokemonAbility.ability.name}>{pokemonAbility.ability.name}</li>
