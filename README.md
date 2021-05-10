@@ -10,7 +10,8 @@
 3. Install the Github Pages Package
 - npm install --save gh-pages
 4. add to "scripts" in package.json 
-   "deploy": "gh-pages -b master -d build"
+   - "deploy": "gh-pages -d build"
+    - "predeploy": "npm build"
     
 5. npm run deploy
 # Opdrachtbeschrijving
